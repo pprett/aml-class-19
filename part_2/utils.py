@@ -1,8 +1,9 @@
+import warnings
 import numpy as np
 
 from matplotlib import pyplot as plt
 from matplotlib.colors import LogNorm
-
+from sklearn import tree
 from skopt.benchmarks import branin as branin
 
 
@@ -31,3 +32,17 @@ def plot_branin():
     ax.set_xlim([-5, 10])
     ax.set_ylabel("$X_1$")
     ax.set_ylim([0, 15])
+    
+
+def plot_sklearn_tree(dt, feature_names):
+    try:
+        import graphviz 
+    except ImportError:
+        warnings.warn('skipping plot_tree; graphviz not installed.')
+        return
+    dot_data = tree.export_graphviz(dt, out_file=None, 
+        feature_names=feature_names,  
+        filled=True, rounded=True,  
+        special_characters=True)
+    graph = graphviz.Source(dot_data) 
+    return graph
