@@ -14,23 +14,24 @@ Create a new conda env:
 
 ## Jupyter
 
-    conda install -c conda-forge jupyterlab
-    conda install -c conda-forge ipywidgets
+    conda install -y -c conda-forge jupyterlab
+    conda install -y -c conda-forge ipywidgets
 
 ## Pydata & dependencies
 
-    conda install -c conda-forge matplotlib
-    conda install -c conda-forge seaborn
+    conda install -y -c conda-forge matplotlib
+    conda install -y -c conda-forge seaborn
 
     conda install -c anaconda scikit-learn==0.19.2
     conda install --freeze-installed -c conda-forge scikit-optimize
-    
+
+    pip install git+https://github.com/kitchoi/scikit-optimize@fix-762-sklearn-0.21
     pip install tpot
     
 ## Optional
 
-    conda install --freeze-installed -c conda-forge graphviz
-    conda install --freeze-installed -c conda-forge python-graphviz
+    conda install -y --freeze-installed -c conda-forge graphviz
+    conda install -y --freeze-installed -c conda-forge python-graphviz
     
 
 # TOC

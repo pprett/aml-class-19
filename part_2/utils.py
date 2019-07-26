@@ -3,11 +3,15 @@ import numpy as np
 
 from matplotlib import pyplot as plt
 from matplotlib.colors import LogNorm
+
+from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn import tree
+
 from skopt.benchmarks import branin as branin
 
 
 def plot_branin():
+    """Plot the skopt benchmark `branin` with its 3 minima. """
     fig, ax = plt.subplots()
 
     x1_values = np.linspace(-5, 10, 100)
@@ -34,7 +38,8 @@ def plot_branin():
     ax.set_ylim([0, 15])
     
 
-def plot_sklearn_tree(dt, feature_names):
+def plot_sklearn_tree(dt, feature_names=None):
+    """Plots a sklearn.tree.BaseDecisionTree `dt` using graphviz. """
     try:
         import graphviz 
     except ImportError:
@@ -46,3 +51,24 @@ def plot_sklearn_tree(dt, feature_names):
         special_characters=True)
     graph = graphviz.Source(dot_data) 
     return graph
+
+
+class ColumnGroupSelector(BaseEstimator, TransformerMixin):
+    """Selects a group of columns from a pandas.DataFrame and returns a numpy array.
+
+    Parameters
+    ----------
+    columns : list of str, required
+        Column names to be selected.
+    """
+    def __init__(self, columns):
+        self.columns = columns
+
+    def fit(self, x, y=None):
+        return self
+
+    def transform(self, df):
+        dtypes = set(df.dtypes[self.columns].values.tolist())
+        if len(dtypes) > 1:
+            raise ValueError('{} must select homogenious dtypes but selected {}'.format(self, dtypes))
+        return df[self.columns].values
