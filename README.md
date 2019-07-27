@@ -22,30 +22,12 @@ Create a new conda env:
     conda install -y -c conda-forge matplotlib
     conda install -y -c conda-forge seaborn
 
-    conda install -c anaconda scikit-learn==0.19.2
-    conda install --freeze-installed -c conda-forge scikit-optimize
+    conda install -c anaconda scikit-learn==0.21.2
 
     pip install git+https://github.com/kitchoi/scikit-optimize@fix-762-sklearn-0.21
-    pip install tpot
+    pip install tpot==0.10.2
     
 ## Optional
 
     conda install -y --freeze-installed -c conda-forge graphviz
     conda install -y --freeze-installed -c conda-forge python-graphviz
-    
-
-# TOC
-
-
-## Part 1: Introduction
-
-### 
-
-
-## Part 2: Tools and Techniques for Automated Machine Learning
-
-### 2.1 ML Pipelines
-### 2.2 Bayesian Hyper-parameter Tuning
-### 2.3 Pipeline Optimization
-
-## Part 3: Creating Value using Automated Machine Learning
