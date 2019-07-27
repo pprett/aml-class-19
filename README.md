@@ -38,4 +38,4 @@ Create a new conda env:
 
 ## II Tools & Techniques for Automated Machine Learning
 
-## III Create Value with Automated Machine Learning
+## III Create Value using Automation
